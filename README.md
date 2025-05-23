@@ -29,7 +29,7 @@ Transform your industrial data landscape with the WinCC OA MQTT Explorer and Imp
 - Seamlessly import complete UNS structures
 
   
-![2FacePlates_754](https://github.com/user-attachments/assets/025d95ca-133d-414d-9247-105e3fe7e3be)
+![2FacePlates_754](connect.png)
  > Fig. 01 WinCC OA Explorer and Importer Tool Overview
 
 For detailed instructions on usage and integration, please refer to the datasheet available in the Downloads section with the name:  
