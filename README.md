@@ -49,12 +49,12 @@ Step into the future of industrial automation with a solution that understands y
 **Example Project:**
 
 - Attachment to Project
-
+---
 ## Content:
 This repository includes the project folders, documentation, and the legal information of the application example, organized as following:
-- **PT_SIE_FRAMEWORK:** The Framework subproject
+- **MQTTExplorerAnImporterTool** The WinCC OA tool subproject
 - **WinCCOAFrameworkAppExample:** Predefined project for testing with WinCC OA
-- **WinCCOAFrameworkAppExample_V1.1.pdf:** HowTo of Implementation, Installation and Usage of the WinCC OA Panel Topology Framework
+- **WinCCOAFrameworkAppExample_V1.1.pdf:** HowTo of Implementation, Installation and Usage of the WinCC OA MQTT Explorer and Importer
 - **LEGAL_INFO.md:** Legal Information
 - **LICENSE.md:** License Information
 - **README.md:** this file
