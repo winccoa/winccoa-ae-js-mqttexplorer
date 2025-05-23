@@ -32,7 +32,7 @@ Transform your industrial data landscape with the WinCC OA MQTT Explorer and Imp
 ![connect.png](https://github.com/sofiane-boukhezzar/attachment/blob/eb8df5f7ca393c80c34e7f5d5f6f6722d615a30c/connect.png)
  > Fig. 01 WinCC OA Explorer and Importer Tool Overview
 
-For detailed instructions on usage and integration, please refer to the datasheet available in the Downloads section with the name:  
+For detailed instructions on usage and integration, please refer to the datasheet available in the [Content section](https://github.com/winccoa/winccoa-ae-js-mqttexplorer/blob/main/README.md#content) with the name:  
 **“WinCCOAMQTTExplorerAndImporterTool.pdf”**
 
 
