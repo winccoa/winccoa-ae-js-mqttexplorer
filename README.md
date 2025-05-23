@@ -28,8 +28,7 @@ Transform your industrial data landscape with the WinCC OA MQTT Explorer and Imp
 - Automated data structuring and organization  
 - Seamlessly import complete UNS structures
 
-**Figure 1 – WinCC OA Explorer and Importer Tool Overview**
-
+ > Figure 1 – WinCC OA Explorer and Importer Tool Overview
 
 For detailed instructions on usage and integration, please refer to the datasheet available in the Downloads section with the name:  
 **“WinCCOAMQTTExplorerAndImporterTool.pdf”**
@@ -39,8 +38,6 @@ For detailed instructions on usage and integration, please refer to the datashee
 
 Step into the future of industrial automation with a solution that understands your digital transformation needs. Whether you're modernizing existing infrastructure or building new smart factory solutions, the tool provides the perfect foundation for your Industry 4.0 journey.
 
-
-- Attachment to Project
 
 ## Content:
 This repository includes the project folders, documentation, and the legal information of the application example, organized as following:
