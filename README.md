@@ -32,7 +32,7 @@ Transform your industrial data landscape with the WinCC OA MQTT Explorer and Imp
 - Seamlessly import complete UNS structures
 
   
-![MQTTExporterAndImporterToolVideo.mp4](https://github.com/sofiane-boukhezzar/attachment/blob/771b858890289e2627825df1977fddbf8f60d93f/MQTTExporterAndImporterToolVideo.mp4)
+![ezgif-300da18907ca21.gif](https://github.com/sofiane-boukhezzar/attachment/blob/ff8583d2afb39df00e592a34d4b37e9fc520e8ff/ezgif-300da18907ca21.gif)
  > video. 01 WinCC OA Explorer and Importer Tool workflow
 
 For detailed instructions on usage and integration, please refer to the datasheet available in the [Content section](https://github.com/winccoa/winccoa-ae-js-mqttexplorer/blob/main/README.md#content) with the name:  
