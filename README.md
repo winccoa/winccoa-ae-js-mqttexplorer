@@ -40,16 +40,8 @@ For detailed instructions on usage and integration, please refer to the datashee
 Step into the future of industrial automation with a solution that understands your digital transformation needs. Whether you're modernizing existing infrastructure or building new smart factory solutions, the tool provides the perfect foundation for your Industry 4.0 journey.
 
 
-## Downloads:
-
-**WinCC OA Documentation:**
-
-- Attachment to Manual
-
-**Example Project:**
-
 - Attachment to Project
----
+
 ## Content:
 This repository includes the project folders, documentation, and the legal information of the application example, organized as following:
 - **MQTTExplorerAnImporterTool** The WinCC OA tool subproject
