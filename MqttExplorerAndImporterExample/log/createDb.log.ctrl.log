@@ -1,0 +1,15 @@
+[2025.05.12 15:14:39.793 ] "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl" -log +stderr -log -file ngaSetDefaultDatabase.ctl postgresql  -data localhost -event localhost
+WCCOActrl    (0), 2025.05.12 15:14:39.905, SYS,  INFO,        1, Manager Start, PROJ, MqttExplorerAndImporterExample, V 3.20 - 3.20 P003 platform Windows AMD64 linked at Dec  2 2024 20:34:46 (547d1f1e04)
+WCCOActrl    (0), 2025.05.12 15:14:39.905, SYS,  INFO,        3, Trying to connect to (SYS: 0 Data -num 0 CONN: 1) @ localhost:4897
+WCCOActrl    (0), 2025.05.12 15:14:39.916, SYS,  INFO,        4, Connected to (SYS: 0 Data -num 0 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCOActrl    (1), 2025.05.12 15:14:39.929, SYS,  INFO,        6, Initialization by Data Manager finished
+WCCOActrl    (1), 2025.05.12 15:14:39.929, SYS,  INFO,        3, Trying to connect to (SYS: 1 Event -num 0 CONN: 1) @ localhost:4998
+WCCOActrl    (1), 2025.05.12 15:14:39.960, SYS,  INFO,        4, Connected to (SYS: 1 Event -num 0 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCOActrl    (1), 2025.05.12 15:14:39.971, SYS,  INFO,      102, Waiting for user names/passwords
+WCCOActrl    (1), 2025.05.12 15:14:39.972, SYS,  INFO,      103, User names/passwords initialized
+WCCOActrl    (1), 2025.05.12 15:14:40.056, SYS,  INFO,        1, Manager Start, ngaSetDefaultDatabase.ctl
+WCCOActrl    (1), 2025.05.12 15:14:40.058, SYS,  INFO,      181, Closing connection to (SYS: 1 Data -num 0 CONN: 1)
+WCCOActrl    (1), 2025.05.12 15:14:40.058, SYS,  INFO,      181, Closing connection to (SYS: 1 Event -num 0 CONN: 1)
+WCCOActrl    (1), 2025.05.12 15:14:40.058, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Data -num 0 CONN: 1), Connection closed
+WCCOActrl    (1), 2025.05.12 15:14:40.059, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Event -num 0 CONN: 1), Connection closed
+WCCOActrl    (1), 2025.05.12 15:14:40.063, SYS,  INFO,        2, Manager Stop

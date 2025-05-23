@@ -1,0 +1,17 @@
+processing file C:\Siemens\Automation\WinCC_OA\3.20\dplist\update_003.dpl
+
+modifying type _OPCUASubscription:
+System DpType (41): Modify msg for type _OPCUASubscription sent.
+
+modifying type _NGA_BackendProfile:
+System DpType (61): Modify msg for type _NGA_BackendProfile sent.
+
+modifying type _VarTrend:
+DpType (91): Modify msg for type _VarTrend sent.
+DpValue (95): Values for _NGA_P_InfluxDB_singleDB_Profile.dbSpecificOptional sent.
+DpValue (96): Values for _NGA_P_InfluxDB_dualDB_Profile.dbSpecificOptional sent.
+DpValue (97): Values for _NGA_P_PostgreSQLBackend_Profile.dbSpecificOptional sent.
+DpValue (98): Values for _NGA_P_MSSQL_Profile.dbSpecificOptional sent.
+Waiting for last response from eventmanager...
+Scanning of file C:\Siemens\Automation\WinCC_OA\3.20\dplist\update_003.dpl is finished (0)
+End of Program

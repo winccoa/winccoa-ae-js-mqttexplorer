@@ -1,0 +1,225 @@
+WCCILpmon    (1), 2025.05.13 08:48:32.451, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.13 08:52:07.981, SYS,  INFO,       20/pmon, Got START_ALL command from 127.0.0.1, starting the project
+WCCILpmon    (1), 2025.05.13 08:52:08.012, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILdataSQLite.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 1 
+WCCILpmon    (1), 2025.05.13 08:52:08.244, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.13 08:52:12.978, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILevent.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 3 
+WCCILpmon    (1), 2025.05.13 08:52:13.744, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILproxy.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 4 
+WCCILpmon    (1), 2025.05.13 08:52:14.094, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 5 -num 1 -f pvss_scripts.lst
+WCCILpmon    (1), 2025.05.13 08:52:14.420, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILsim.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 6 
+WCCILpmon    (1), 2025.05.13 08:52:14.858, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.13 08:52:17.754, SYS,  INFO,        9/pmon, The project is up and running. Entering monitor mode
+WCCILpmon    (1), 2025.05.13 10:08:46.721, SYS,  INFO,       28/pmon, Got INS command from 127.0.0.1, inserting new manager node at index 8
+WCCILpmon    (1), 2025.05.13 10:09:57.264, SYS,  INFO,       28/pmon, Got INS command from 127.0.0.1, inserting new manager WCCOAmqtt at index 9
+WCCILpmon    (1), 2025.05.13 10:41:25.582, SYS,  WARNING,    36/pmon, Blocking Manager WCCILdataSQLite(0) detected. No heartbeat since 30 seconds.
+WCCILpmon    (1), 2025.05.13 10:41:25.582, SYS,  WARNING,    36/pmon, Blocking Manager WCCILproxy(1) detected. No heartbeat since 30 seconds.
+WCCILpmon    (1), 2025.05.13 10:41:25.583, SYS,  WARNING,    36/pmon, Blocking Manager WCCOActrl(1) detected. No heartbeat since 30 seconds.
+WCCILpmon    (1), 2025.05.13 10:41:25.584, SYS,  WARNING,    36/pmon, Blocking Manager WCCOAui(1) detected. No heartbeat since 30 seconds.
+WCCILpmon    (1), 2025.05.13 10:41:26.667, SYS,  WARNING,    39/pmon, Manager WCCILdataSQLite(0) is no longer blocking.
+WCCILpmon    (1), 2025.05.13 10:41:26.668, SYS,  WARNING,    39/pmon, Manager WCCILproxy(1) is no longer blocking.
+WCCILpmon    (1), 2025.05.13 10:41:26.669, SYS,  WARNING,    39/pmon, Manager WCCOActrl(1) is no longer blocking.
+WCCILpmon    (1), 2025.05.13 10:41:30.348, SYS,  WARNING,    39/pmon, Manager WCCOAui(1) is no longer blocking.
+WCCILpmon    (1), 2025.05.13 11:19:58.895, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager node(1) at index 8
+WCCILpmon    (1), 2025.05.13 11:19:58.900, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.13 11:20:03.852, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.13 11:20:03.858, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.13 11:22:13.135, SYS,  INFO,       25/pmon, Got STOP command (SIGTERM) from 127.0.0.1, stopping the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.13 11:22:13.136, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 11:22:19.482, SYS,  INFO,       25/pmon, Got STOP command (SIGTERM) from 127.0.0.1, stopping the manager node(2) at index 8
+WCCILpmon    (1), 2025.05.13 11:22:19.483, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 11:25:48.279, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager node(2) at index 8
+WCCILpmon    (1), 2025.05.13 11:25:48.284, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.13 11:25:49.938, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.13 11:25:49.942, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.13 11:26:29.696, SYS,  INFO,       25/pmon, Got STOP command (SIGTERM) from 127.0.0.1, stopping the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.13 11:26:29.697, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 11:26:45.106, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.13 11:26:45.110, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.13 11:28:23.235, SYS,  INFO,       25/pmon, Got STOP command (SIGTERM) from 127.0.0.1, stopping the manager node(2) at index 8
+WCCILpmon    (1), 2025.05.13 11:28:23.236, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 11:28:26.024, SYS,  INFO,       25/pmon, Got STOP command (SIGTERM) from 127.0.0.1, stopping the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.13 11:28:26.025, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 11:28:31.350, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager node(2) at index 8
+WCCILpmon    (1), 2025.05.13 11:28:31.363, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.13 11:28:33.531, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.13 11:28:33.536, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.13 14:12:44.118, SYS,  INFO,       21/pmon, Got STOP_ALL command from 127.0.0.1, stopping the project
+WCCILpmon    (1), 2025.05.13 14:12:44.119, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:44.119, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:44.120, SYS,  INFO,       17/pmon, Stopping Manager WCCOAui(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:44.120, SYS,  INFO,       17/pmon, Stopping Manager WCCILsim(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:44.121, SYS,  INFO,       17/pmon, Stopping Manager WCCOActrl(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:44.121, SYS,  INFO,       17/pmon, Stopping Manager WCCOAnextgenarch(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:45.210, SYS,  INFO,       17/pmon, Stopping Manager WCCILevent(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:45.430, SYS,  INFO,       17/pmon, Stopping Manager WCCILdataSQLite(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:47.457, SYS,  INFO,       17/pmon, Stopping Manager WCCILproxy(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.13 14:12:48.114, SYS,  INFO,       13/pmon, Completely stopped the project - waiting for commands
+WCCILpmon    (1), 2025.05.13 14:13:09.544, SYS,  INFO,        3/pmon, Got shutdown command - stopping the project and terminating
+WCCILpmon    (1), 2025.05.13 14:13:09.545, SYS,  INFO,       15/pmon, Completely stopped the project - terminating
+WCCILpmon    (1), 2025.05.13 14:13:09.546, SYS,  INFO,        2, Manager Stop
+WCCILpmon    (1), 2025.05.14 00:07:00.823, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.14 00:07:19.133, SYS,  INFO,       20/pmon, Got START_ALL command from 127.0.0.1, starting the project
+WCCILpmon    (1), 2025.05.14 00:07:19.142, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILdataSQLite.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 1 
+WCCILpmon    (1), 2025.05.14 00:07:19.315, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.14 00:07:20.874, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILevent.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 3 
+WCCILpmon    (1), 2025.05.14 00:07:21.559, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILproxy.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 4 
+WCCILpmon    (1), 2025.05.14 00:07:21.787, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 5 -num 1 -f pvss_scripts.lst
+WCCILpmon    (1), 2025.05.14 00:07:22.135, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILsim.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 6 
+WCCILpmon    (1), 2025.05.14 00:07:22.579, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.14 00:07:25.831, SYS,  INFO,        9/pmon, The project is up and running. Entering monitor mode
+WCCILpmon    (1), 2025.05.14 00:20:40.521, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager node(1) at index 8
+WCCILpmon    (1), 2025.05.14 00:20:40.531, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.14 00:20:42.781, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.14 00:20:42.792, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.14 00:45:56.090, SYS,  INFO,       21/pmon, Got STOP_ALL command from 127.0.0.1, stopping the project
+WCCILpmon    (1), 2025.05.14 00:45:56.092, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:45:56.093, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:45:56.093, SYS,  INFO,       17/pmon, Stopping Manager WCCOAui(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:45:56.094, SYS,  INFO,       17/pmon, Stopping Manager WCCILsim(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:45:56.095, SYS,  INFO,       17/pmon, Stopping Manager WCCOActrl(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:45:56.095, SYS,  INFO,       17/pmon, Stopping Manager WCCOAnextgenarch(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:46:08.608, SYS,  INFO,       17/pmon, Stopping Manager WCCILevent(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:46:08.832, SYS,  INFO,       17/pmon, Stopping Manager WCCILdataSQLite(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:46:10.850, SYS,  INFO,       17/pmon, Stopping Manager WCCILproxy(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 00:46:11.116, SYS,  INFO,       13/pmon, Completely stopped the project - waiting for commands
+WCCILpmon    (1), 2025.05.14 00:46:58.620, SYS,  INFO,        3/pmon, Got shutdown command - stopping the project and terminating
+WCCILpmon    (1), 2025.05.14 00:46:58.621, SYS,  INFO,       15/pmon, Completely stopped the project - terminating
+WCCILpmon    (1), 2025.05.14 00:46:58.622, SYS,  INFO,        2, Manager Stop
+WCCILpmon    (1), 2025.05.14 11:05:51.560, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.14 11:05:57.246, SYS,  INFO,       20/pmon, Got START_ALL command from 127.0.0.1, starting the project
+WCCILpmon    (1), 2025.05.14 11:05:57.265, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILdataSQLite.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 1 
+WCCILpmon    (1), 2025.05.14 11:05:57.603, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.14 11:05:59.125, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILevent.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 3 
+WCCILpmon    (1), 2025.05.14 11:05:59.914, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILproxy.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 4 
+WCCILpmon    (1), 2025.05.14 11:06:00.246, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 5 -num 1 -f pvss_scripts.lst
+WCCILpmon    (1), 2025.05.14 11:06:00.583, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILsim.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 6 
+WCCILpmon    (1), 2025.05.14 11:06:01.136, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.14 11:06:06.844, SYS,  INFO,        9/pmon, The project is up and running. Entering monitor mode
+WCCILpmon    (1), 2025.05.14 11:11:40.391, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager node(1) at index 8
+WCCILpmon    (1), 2025.05.14 11:11:40.403, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.14 11:11:44.583, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.14 11:11:44.598, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.14 16:38:47.205, SYS,  INFO,       26/pmon, Got KILL command (SIGKILL) from 127.0.0.1, stopping the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.14 16:38:47.206, SYS,  INFO,       17/pmon, Stopping Manager WCCOAui(1) with signal SIGKILL
+WCCILpmon    (1), 2025.05.14 16:38:56.847, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.14 16:38:56.859, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.14 17:46:51.593, SYS,  INFO,       21/pmon, Got STOP_ALL command from 127.0.0.1, stopping the project
+WCCILpmon    (1), 2025.05.14 17:46:51.594, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:51.595, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:51.595, SYS,  INFO,       17/pmon, Stopping Manager WCCILsim(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:51.596, SYS,  INFO,       17/pmon, Stopping Manager WCCOActrl(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:51.597, SYS,  INFO,       17/pmon, Stopping Manager WCCOAnextgenarch(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:52.216, SYS,  INFO,       17/pmon, Stopping Manager WCCILevent(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:52.426, SYS,  INFO,       17/pmon, Stopping Manager WCCILdataSQLite(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:54.443, SYS,  INFO,       17/pmon, Stopping Manager WCCILproxy(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.14 17:46:54.764, SYS,  INFO,       13/pmon, Completely stopped the project - waiting for commands
+WCCILpmon    (1), 2025.05.14 17:48:25.460, SYS,  INFO,        3/pmon, Got shutdown command - stopping the project and terminating
+WCCILpmon    (1), 2025.05.14 17:48:25.461, SYS,  INFO,       15/pmon, Completely stopped the project - terminating
+WCCILpmon    (1), 2025.05.14 17:48:25.462, SYS,  INFO,        2, Manager Stop
+WCCILpmon    (1), 2025.05.18 20:49:32.672, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.18 20:50:41.122, SYS,  INFO,        3/pmon, Got shutdown command - stopping the project and terminating
+WCCILpmon    (1), 2025.05.18 20:50:41.124, SYS,  INFO,       15/pmon, Completely stopped the project - terminating
+WCCILpmon    (1), 2025.05.18 20:50:41.125, SYS,  INFO,        2, Manager Stop
+WCCILpmon    (1), 2025.05.22 11:43:00.628, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.22 11:43:00.873, SYS,  INFO,       20/pmon, Got START_ALL command from 127.0.0.1, starting the project
+WCCILpmon    (1), 2025.05.22 11:43:00.920, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILdataSQLite.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 1 
+WCCILpmon    (1), 2025.05.22 11:43:01.249, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.22 11:43:02.790, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILevent.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 3 
+WCCILpmon    (1), 2025.05.22 11:43:03.603, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILproxy.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 4 
+WCCILpmon    (1), 2025.05.22 11:43:04.049, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 5 -num 1 -f pvss_scripts.lst
+WCCILpmon    (1), 2025.05.22 11:43:04.395, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILsim.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 6 
+WCCILpmon    (1), 2025.05.22 11:43:04.960, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.22 11:43:08.005, SYS,  INFO,        9/pmon, The project is up and running. Entering monitor mode
+WCCILpmon    (1), 2025.05.22 11:48:49.773, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager node(1) at index 8
+WCCILpmon    (1), 2025.05.22 11:48:49.790, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.22 11:48:53.073, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.22 11:48:53.085, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.22 12:41:06.351, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.22 12:41:06.361, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.22 18:36:05.919, SYS,  INFO,       11/pmon, Detected stopped manager WCCOAnextgenarch(1) - restarting it #1
+WCCILpmon    (1), 2025.05.22 18:36:05.945, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.22 21:04:39.849, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.22 21:04:45.781, SYS,  INFO,       20/pmon, Got START_ALL command from 127.0.0.1, starting the project
+WCCILpmon    (1), 2025.05.22 21:04:45.796, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILdataSQLite.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 1 
+WCCILpmon    (1), 2025.05.22 21:04:46.143, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.22 21:04:48.076, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILevent.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 3 
+WCCILpmon    (1), 2025.05.22 21:04:49.096, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILproxy.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 4 
+WCCILpmon    (1), 2025.05.22 21:04:49.320, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 5 -num 1 -f pvss_scripts.lst
+WCCILpmon    (1), 2025.05.22 21:04:49.667, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILsim.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 6 
+WCCILpmon    (1), 2025.05.22 21:04:50.121, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.22 21:04:52.297, SYS,  INFO,        9/pmon, The project is up and running. Entering monitor mode
+WCCILpmon    (1), 2025.05.23 00:09:45.827, SYS,  INFO,       29/pmon, Got PROP_PUT command from 127.0.0.1, changing manager node(1) at index 8
+WCCILpmon    (1), 2025.05.23 00:09:45.828, SYS,  INFO,       11/pmon, Detected stopped manager node(1) - restarting it #1
+WCCILpmon    (1), 2025.05.23 00:09:45.848, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.23 00:09:48.855, SYS,  INFO,       29/pmon, Got PROP_PUT command from 127.0.0.1, changing manager WCCOAmqtt(2) at index 9
+WCCILpmon    (1), 2025.05.23 00:09:48.856, SYS,  INFO,       11/pmon, Detected stopped manager WCCOAmqtt(2) - restarting it #1
+WCCILpmon    (1), 2025.05.23 00:09:48.880, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.23 00:10:32.604, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 00:10:32.615, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:18:05.763, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 00:18:05.773, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:21:05.149, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 00:21:05.161, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:25:38.043, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 00:25:38.054, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:31:41.317, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 00:31:41.326, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:35:44.764, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 00:35:44.772, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:42:31.559, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 00:42:31.569, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:45:28.348, SYS,  INFO,       21/pmon, Got STOP_ALL command from 127.0.0.1, stopping the project
+WCCILpmon    (1), 2025.05.23 00:45:28.350, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:28.351, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:28.352, SYS,  INFO,       17/pmon, Stopping Manager WCCILsim(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:28.352, SYS,  INFO,       17/pmon, Stopping Manager WCCOActrl(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:28.353, SYS,  INFO,       17/pmon, Stopping Manager WCCOAnextgenarch(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:28.948, SYS,  INFO,       17/pmon, Stopping Manager WCCILevent(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:29.168, SYS,  INFO,       17/pmon, Stopping Manager WCCILdataSQLite(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:31.208, SYS,  INFO,       17/pmon, Stopping Manager WCCILproxy(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:45:32.302, SYS,  INFO,       13/pmon, Completely stopped the project - waiting for commands
+WCCILpmon    (1), 2025.05.23 00:45:42.080, SYS,  INFO,        3/pmon, Got shutdown command - stopping the project and terminating
+WCCILpmon    (1), 2025.05.23 00:45:42.081, SYS,  INFO,       15/pmon, Completely stopped the project - terminating
+WCCILpmon    (1), 2025.05.23 00:45:42.082, SYS,  INFO,        2, Manager Stop
+WCCILpmon    (1), 2025.05.23 00:47:42.203, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.23 00:47:48.349, SYS,  INFO,       20/pmon, Got START_ALL command from 127.0.0.1, starting the project
+WCCILpmon    (1), 2025.05.23 00:47:48.359, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILdataSQLite.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 1 
+WCCILpmon    (1), 2025.05.23 00:47:48.589, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.23 00:47:49.859, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILevent.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 3 
+WCCILpmon    (1), 2025.05.23 00:47:50.534, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILproxy.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 4 
+WCCILpmon    (1), 2025.05.23 00:47:50.773, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 5 -num 1 -f pvss_scripts.lst
+WCCILpmon    (1), 2025.05.23 00:47:51.119, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILsim.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 6 
+WCCILpmon    (1), 2025.05.23 00:47:51.562, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 00:47:55.613, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.23 00:47:55.958, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.23 00:47:56.515, SYS,  INFO,        9/pmon, The project is up and running. Entering monitor mode
+WCCILpmon    (1), 2025.05.23 00:50:13.428, SYS,  INFO,       21/pmon, Got STOP_ALL command from 127.0.0.1, stopping the project
+WCCILpmon    (1), 2025.05.23 00:50:13.430, SYS,  INFO,       17/pmon, Stopping Manager WCCOAmqtt(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:13.430, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:13.431, SYS,  INFO,       17/pmon, Stopping Manager WCCILsim(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:13.432, SYS,  INFO,       17/pmon, Stopping Manager WCCOActrl(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:13.433, SYS,  INFO,       17/pmon, Stopping Manager WCCOAnextgenarch(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:14.095, SYS,  INFO,       17/pmon, Stopping Manager WCCILevent(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:14.316, SYS,  INFO,       17/pmon, Stopping Manager WCCILdataSQLite(0) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:16.355, SYS,  INFO,       17/pmon, Stopping Manager WCCILproxy(1) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 00:50:17.012, SYS,  INFO,       13/pmon, Completely stopped the project - waiting for commands
+WCCILpmon    (1), 2025.05.23 00:50:25.169, SYS,  INFO,        3/pmon, Got shutdown command - stopping the project and terminating
+WCCILpmon    (1), 2025.05.23 00:50:25.170, SYS,  INFO,       15/pmon, Completely stopped the project - terminating
+WCCILpmon    (1), 2025.05.23 00:50:25.171, SYS,  INFO,        2, Manager Stop
+WCCILpmon    (1), 2025.05.23 10:40:52.470, SYS,  INFO,        1, Manager Start, WAIT_MODE
+WCCILpmon    (1), 2025.05.23 10:41:28.607, SYS,  INFO,       20/pmon, Got START_ALL command from 127.0.0.1, starting the project
+WCCILpmon    (1), 2025.05.23 10:41:28.624, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILdataSQLite.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 1 
+WCCILpmon    (1), 2025.05.23 10:41:28.968, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAnextgenarch.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 2 
+WCCILpmon    (1), 2025.05.23 10:41:30.212, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILevent.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 3 
+WCCILpmon    (1), 2025.05.23 10:41:30.892, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILproxy.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 4 
+WCCILpmon    (1), 2025.05.23 10:41:31.228, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOActrl.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 5 -num 1 -f pvss_scripts.lst
+WCCILpmon    (1), 2025.05.23 10:41:31.461, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCILsim.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 6 
+WCCILpmon    (1), 2025.05.23 10:41:32.029, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi
+WCCILpmon    (1), 2025.05.23 10:41:53.326, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.23 10:41:53.787, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAmqtt.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 9 -num 2
+WCCILpmon    (1), 2025.05.23 10:41:54.438, SYS,  INFO,        9/pmon, The project is up and running. Entering monitor mode
+WCCILpmon    (1), 2025.05.23 10:48:10.036, SYS,  INFO,       25/pmon, Got STOP command (SIGTERM) from 127.0.0.1, stopping the manager node(2) at index 8
+WCCILpmon    (1), 2025.05.23 10:48:10.037, SYS,  INFO,       17/pmon, Stopping Manager node(2) with signal SIGTERM
+WCCILpmon    (1), 2025.05.23 10:48:10.138, SYS,  INFO,       11/pmon, Detected stopped manager node(2) - restarting it #1
+WCCILpmon    (1), 2025.05.23 10:48:10.155, SYS,  INFO,        1, Manager Start, "node.exe" "C:\Siemens\Automation\WinCC_OA\3.20\javascript/winccoa-manager/lib/bootstrap.js" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 8 mqtt_topic_collector/mqttTopicCollector.js
+WCCILpmon    (1), 2025.05.23 11:10:33.850, SYS,  INFO,       24/pmon, Got START command from 127.0.0.1, starting the manager WCCOAui(1) at index 7
+WCCILpmon    (1), 2025.05.23 11:10:33.860, SYS,  INFO,        1, Manager Start, "C:\Siemens\Automation\WinCC_OA\3.20\bin\WCCOAui.exe" -PROJ "MqttExplorerAndImporterExample" -pmonIndex 7 -m gedi

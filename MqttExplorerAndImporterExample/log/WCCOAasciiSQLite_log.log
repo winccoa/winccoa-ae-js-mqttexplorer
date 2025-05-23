@@ -1,0 +1,13 @@
+WCCOAasciiSQLite(0), 2025.05.13 08:52:18.811, SYS,  INFO,        1, Manager Start, PROJ, MqttExplorerAndImporterExample, V 3.20 - 3.20 P003 platform Windows AMD64 linked at Dec  2 2024 20:34:46 (547d1f1e04)
+WCCOAasciiSQLite(0), 2025.05.13 08:52:18.811, SYS,  INFO,        3, Trying to connect to (SYS: 0 Data -num 0 CONN: 1) @ md3zxqnc:4897
+WCCOAasciiSQLite(0), 2025.05.13 08:52:18.821, SYS,  INFO,        4, Connected to (SYS: 0 Data -num 0 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.833, SYS,  INFO,        6, Initialization by Data Manager finished
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.833, SYS,  INFO,        3, Trying to connect to (SYS: 1 Event -num 0 CONN: 1) @ md3zxqnc:4998
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.852, SYS,  INFO,        4, Connected to (SYS: 1 Event -num 0 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.863, SYS,  INFO,      102, Waiting for user names/passwords
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.864, SYS,  INFO,      103, User names/passwords initialized
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.881, SYS,  INFO,      181, Closing connection to (SYS: 1 Data -num 0 CONN: 1)
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.881, SYS,  INFO,      181, Closing connection to (SYS: 1 Event -num 0 CONN: 1)
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.881, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Data -num 0 CONN: 1), Connection closed
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.881, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Event -num 0 CONN: 1), Connection closed
+WCCOAasciiSQLite(1), 2025.05.13 08:52:18.881, SYS,  INFO,        2, Manager Stop

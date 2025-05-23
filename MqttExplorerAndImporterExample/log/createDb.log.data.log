@@ -1,0 +1,51 @@
+WCCILdataSQLite(0), 2025.05.12 15:14:32.234, SYS,  INFO,        1, Manager Start, PROJ, MqttExplorerAndImporterExample, V 3.20 - 3.20 P003 platform Windows AMD64 linked at Dec  2 2024 20:34:46 (547d1f1e04)
+WCCILdataSQLite(0), 2025.05.12 15:14:32.267, SYS,  INFO,        0, Initialize archive smoothing
+WCCILdataSQLite(0), 2025.05.12 15:14:32.267, SYS,  INFO,        0, Loading DpIdentification
+WCCILdataSQLite(0), 2025.05.12 15:14:32.267, SYS,  INFO,        0, Initializing last value cache
+WCCILdataSQLite(0), 2025.05.12 15:14:32.267, SYS,  INFO,        0, Loading internal datapoints
+WCCILdataSQLite(0), 2025.05.12 15:14:32.268, SYS,  INFO,        0, Initializing Alert Class cache
+WCCILdataSQLite(0), 2025.05.12 15:14:32.268, SYS,  INFO,        6, Initialization by Data Manager finished
+WCCILdataSQLite(0), 2025.05.12 15:14:32.268, SYS,  INFO,        0, NextGen Archiver will be used...
+WCCILdataSQLite(0), 2025.05.12 15:14:32.477, SYS,  INFO,        4, Connected to (SYS: 1 Event -num 0 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:32.477, SYS,  INFO,        0, Manager (SYS: 1 Data -num 0 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:32.487, SYS,  INFO,        0, Manager (SYS: 1 Event -num 0 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:32.589, PARAM,WARNING,     7, Datapoint does not exist, UserTable, UserTable, _Users.UserId
+WCCILdataSQLite(0), 2025.05.12 15:14:32.589, PARAM,WARNING,     7, Datapoint does not exist, ManagerTable, ManagerTable, _Managers.Auth.ManType
+WCCILdataSQLite(0), 2025.05.12 15:14:32.795, SYS,  INFO,        4, Connected to (SYS: 1 Driver -num 2 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:32.804, SYS,  INFO,        0, Manager (SYS: 1 Driver -num 2 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:33.110, SYS,  INFO,        4, Connected to (SYS: 1 Driver -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:33.122, SYS,  INFO,        0, Manager (SYS: 1 Driver -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:33.353, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:33.356, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:33.408, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:33.621, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:33.755, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:33.759, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:33.788, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:34.279, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:34.411, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:34.416, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:34.465, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:39.371, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:39.593, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:39.603, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:39.652, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:39.783, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:39.923, SYS,  INFO,        4, Connected to (SYS: 1 Ctrl -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:39.927, SYS,  INFO,        0, Manager (SYS: 1 Ctrl -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:39.971, SYS,  INFO,        0, Manager (SYS: 1 Ctrl -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:40.058, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ctrl -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:40.197, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:40.205, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:40.238, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:40.244, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:40.374, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILdataSQLite(0), 2025.05.12 15:14:40.377, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:40.426, SYS,  INFO,        0, Manager (SYS: 1 Ascii -num 1 CONN: 1) initialised
+WCCILdataSQLite(0), 2025.05.12 15:14:40.455, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:40.489, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Driver -num 2 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:40.521, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Driver -num 1 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:40.629, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Event -num 0 CONN: 1), Connection closed
+WCCILdataSQLite(0), 2025.05.12 15:14:41.639, SYS,  INFO,        2, Manager Stop, received signal 15, exiting
+WCCILdataSQLite(0), 2025.05.12 15:14:42.653, SYS,  INFO,        0, Closing databases
+WCCILdataSQLite(0), 2025.05.12 15:14:42.654, SYS,  INFO,        2, Manager Stop

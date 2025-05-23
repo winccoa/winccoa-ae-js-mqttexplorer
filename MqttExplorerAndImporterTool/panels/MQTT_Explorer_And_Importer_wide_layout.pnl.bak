@@ -1,0 +1,1953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel version="14">
+ <properties>
+  <prop name="Name">
+   <prop name="en_US.utf8"></prop>
+   <prop name="de_AT.utf8"></prop>
+   <prop name="ru_RU.utf8"></prop>
+  </prop>
+  <prop name="Size">1177 623</prop>
+  <prop name="BackColor">{0,0,40}</prop>
+  <prop name="RefPoint">0 0</prop>
+  <prop name="InitAndTermRef">True</prop>
+  <prop name="SendClick">False</prop>
+  <prop name="RefFileName"></prop>
+  <prop name="DPI">120</prop>
+  <prop name="PDPI">120</prop>
+  <prop name="layoutType">VBox</prop>
+ </properties>
+ <events>
+  <script isEscaped="1" name="ScopeLib"><![CDATA[const char SEPARATOR = 0xB; // Vertical tab
+    string myStyleButton =
+    &quot;QPushButton {&quot;
+    &quot;  background-color: #000028;&quot;       // Light gray background
+    &quot;  color: #00FFB9;&quot;                  // Dark text
+    &quot;  border: 1px solid #00FFB9;&quot;       // Blue border
+    &quot;  border-radius: 0px;&quot;              // No rounding
+    &quot;  padding: 6px 12px;&quot;
+    &quot;  font-size: 14px;&quot;
+    &quot;  font-weight: 500;&quot;
+    &quot;  min-width: 80px;&quot;
+    &quot;}&quot;
+    &quot;QPushButton:hover {&quot;
+    &quot;  background-color: #001F39;&quot;       // Light blue hover
+  //  &quot;  color: #0078d4;&quot;
+    &quot;  border-color: #00FFB9;&quot;           // Darker border on hover
+    &quot;}&quot;
+    &quot;QPushButton:pressed {&quot;
+    &quot;  background-color: #16565C;&quot;       // Even darker on press
+    &quot;  color: #00FFB9;&quot;                  // Dark text
+    &quot;  border-color: #00FFB9;&quot;
+    &quot;}&quot;;
+     string myStyleInputField =
+    &quot;QLineEdit {&quot;
+    &quot;  background-color: #001F39;&quot;
+    &quot;  color: #FFF;&quot;
+    &quot;  border: 1px solid #FFF;&quot;
+    &quot;  border-radius: 0px;&quot;
+    &quot;  padding: 6px 12px;&quot;
+    &quot;  font-size: 14px;&quot;
+    &quot;  font-weight: 500;&quot;
+    &quot;}&quot;
+    &quot;QLineEdit:hover {&quot;
+    &quot;  background-color: #001F39;&quot;
+    &quot;  border-color: #00FFB9;&quot;
+    &quot;}&quot;
+    &quot;QLineEdit:focus {&quot;
+//     &quot;  background-color: #16565C;&quot;
+    &quot;  background-color: #16565C;&quot;
+    &quot;  color: #FFF;&quot;
+    &quot;  border-color: #00FFB9;&quot;
+    &quot;}&quot;;
+
+     string myStyleInputfielderror=
+    &quot;QLineEdit {&quot;
+    &quot;  background-color: #FF7687;&quot;
+    &quot;  color: #FFF;&quot;
+    &quot;  border: 2px solid #FF2640;&quot;
+    &quot;  border-radius: 0px;&quot;
+    &quot;  padding: 6px 12px;&quot;
+    &quot;  font-size: 14px;&quot;
+    &quot;  font-weight: 500;&quot;
+    &quot;}&quot;
+    &quot;QLineEdit:hover {&quot;
+    &quot;  background-color: #001F39;&quot;
+    &quot;  border-color: #00FFB9;&quot;
+    &quot;}&quot;
+    &quot;QLineEdit:focus {&quot;
+//     &quot;  background-color: #16565C;&quot;
+    &quot;  background-color: #16565C;&quot;
+    &quot;  color: #FFF;&quot;
+    &quot;  border-color: #00FFB9;&quot;
+    &quot;}&quot;;
+
+public void loadJson(string sJson = &quot;&quot;)
+{
+  mapping map = jsonDecode(sJson);
+  TREE.updatesEnabled = FALSE;
+  showJson(getShape(&quot;TREE&quot;), map);
+  TREE.updatesEnabled = TRUE;
+}
+
+void showJson(shape tree, const anytype &amp;collection, string parent = &quot;&quot;)
+{
+  dyn_anytype array = collection;
+
+  if (getType(collection) == MAPPING_VAR)
+  {
+    array = mappingKeys(collection);
+
+    // Show the mapping contains in alphabetical order
+    dynSort(array);
+  }
+
+  for (int i = 1; i &lt;= dynlen(array); i++)
+  {
+    mixed key = i;
+    mixed value;
+
+    if (getType(collection) == MAPPING_VAR)
+    {
+      key   = array[i];
+      value = collection[key];
+    }
+    else
+    {
+      value = array[key];
+    }
+
+    string type = getTypeName(value);
+
+    // Check if this value contains a json string
+    if (getType(value) == STRING_VAR)
+    {
+      mixed temp = jsonDecode(value);
+
+      if (getType(temp) != MIXED_VAR)
+      {
+        value = temp;
+        type  = &quot;json &quot; + getTypeName(temp);
+      }
+    }
+
+    string treeId = parent + SEPARATOR + key;
+
+    tree.appendItemNC(parent, treeId, key);
+
+    if (getType(value) == MAPPING_VAR &amp;&amp; !mappingHasKey(value, &quot;type&quot;))
+    {
+      tree.setText(treeId, 2, &quot;structure&quot;);
+    }
+    else
+    {
+      tree.setText(treeId, 2, value[&quot;type&quot;]);
+    }
+
+    // Add possible child items as subitems
+    if ((getType(value) == MAPPING_VAR ||
+         substr(getTypeName(value), 0, 4) == &quot;dyn_&quot;) &amp;&amp; !mappingHasKey(value, &quot;type&quot;))
+    {
+      showJson(tree, value, treeId);
+
+      tree.setOpen(treeId, TRUE);
+    }
+    else // Show the editable value
+    {
+      tree.setText(treeId, 1, value);
+      tree.setRenameEnabled(treeId, 1, TRUE);
+    }
+
+    // Mark invalid langString mappings
+    if (getType(value) == MAPPING_VAR &amp;&amp;
+        isLangString(value) &amp;&amp;
+        !checkLangStringMapping(value))
+    {
+      tree.setBackColor(treeId, 0, &quot;red&quot;);
+    }
+  }
+}
+
+bool isLangString(const mapping &amp;map)
+{
+  dyn_string keys = mappingKeys(map);
+
+  bool result = dynlen(keys) == getNoOfLangs();
+
+  if (result)
+  {
+    for (int i = 0; i &lt; getNoOfLangs() &amp;&amp; result; i++)
+    {
+      result = dynContains(keys, getLocale(i)) &gt; 0;
+    }
+  }
+
+  return result;
+}
+
+bool checkLangStringMapping(const mapping &amp;map)
+{
+  bool allEmpty    = TRUE;
+  bool allNonEmpty = TRUE;
+
+  // Check if the langstring is OK
+  // It is OK if all language have a value OR if all are empty
+  for (int i = 1; i &lt;= mappinglen(map) &amp;&amp; (allEmpty || allNonEmpty); i++)
+  {
+    string value = mappingGetValue(map, i);
+
+    allEmpty    &amp;= value == &quot;&quot;;
+    allNonEmpty &amp;= value != &quot;&quot;;
+  }
+
+  bool result = allEmpty || allNonEmpty;
+
+  return result;
+}
+
+public void clearTree()
+{
+  TREE.clear();
+}
+
+//fucntion to update the mqtt connection drop box
+void UpdateMqttConnPanel()
+{
+  dyn_string dsitems = dpNames(&quot;*&quot;, &quot;_MqttConnection&quot;, false);
+  dyn_string dsitemsWithoutSysName;
+  string sConnectionName;
+  string sAddress;
+
+  for (int i = 1; i &lt;= dynlen(dsitems); i++)
+  {
+    dsitemsWithoutSysName.append(strltrim(dpSubStr(dsitems[i], DPSUB_DP), &quot;_&quot;));
+  }
+
+  mqttConnections_box.items(dsitemsWithoutSysName);
+  mqttConnections_box.updatesEnabled(true);
+
+  getValue(&quot;mqttConnections_box&quot;, &quot;text&quot;, sConnectionName);
+  dpSet(&quot;MqttBrokerInformation.MqttBrokerConnName&quot;, sConnectionName);
+
+  if (dpExists(&quot;_&quot; + sConnectionName) &amp;&amp; sConnectionName != &quot;&quot;)
+  {
+    dpGet(&quot;_&quot; + sConnectionName + &quot;.Config.Address&quot;, sAddress);
+    mapping mAddress = jsonDecode(sAddress);
+    Username_txt.text(mAddress[&quot;Username&quot;]);
+    URL_txt.text(mAddress[&quot;ConnectionString&quot;]);
+  }
+}
+]]></script>
+  <script isEscaped="1" name="Close"><![CDATA[main()
+{
+ dpSet(&quot;MqttBrokerInformation.MqttClientConnTrigger&quot;, false);
+ PanelOff();
+}]]></script>
+  <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  dyn_dyn_string xxdepes1;
+  dyn_dyn_int xxdepei1;
+  string sDP = &quot;MqttBrokerInformation&quot;;
+
+  // Create the data type
+  string DptName = &quot;MqttBrokerBrowse&quot;;
+
+  xxdepes1[1] = makeDynString(DptName, &quot;&quot;, &quot;&quot;, &quot;&quot;);
+  xxdepes1[2] = makeDynString(&quot;&quot;, &quot;MqttBrokerConnStatus&quot;, &quot;&quot;, &quot;&quot;);
+  xxdepes1[3] = makeDynString(&quot;&quot;, &quot;MqttBrokerConnName&quot;, &quot;&quot;, &quot;&quot;);
+  xxdepes1[4] = makeDynString(&quot;&quot;, &quot;MqttBrokerConnPassword&quot;, &quot;&quot;, &quot;&quot;);
+  xxdepes1[5] = makeDynString(&quot;&quot;, &quot;DiscoveredTopics&quot;, &quot;&quot;, &quot;&quot;);
+  xxdepes1[6] = makeDynString(&quot;&quot;, &quot;MqttBrokerSubTopic&quot;, &quot;&quot;, &quot;&quot;);
+  xxdepes1[7] = makeDynString(&quot;&quot;, &quot;MqttClientConnTrigger&quot;, &quot;&quot;, &quot;&quot;);
+
+  // Define the data point elements as unsigned integers
+  xxdepei1[1] = makeDynInt(DPEL_STRUCT);
+  xxdepei1[2] = makeDynInt(0, DPEL_BOOL);
+  xxdepei1[3] = makeDynInt(0, DPEL_STRING);
+  xxdepei1[4] = makeDynInt(0, DPEL_STRING);
+  xxdepei1[5] = makeDynInt(0, DPEL_STRING);
+  xxdepei1[6] = makeDynInt(0, DPEL_STRING);
+  xxdepei1[7] = makeDynInt(0, DPEL_BOOL);
+
+  // Create the data point type if it doesn't already exists
+
+  if (!dpTypeExists(DptName))
+  {
+    dpTypeCreate(xxdepes1, xxdepei1);
+  }
+
+  // create the DP which contains the info of the broker connection
+  if (!dpExists(sDP))
+  {
+    dpCreate(sDP, DptName);
+  }
+
+  UpdateMqttConnPanel();
+
+  string sPassword;
+  string sTopicToSubscribe;
+  dpGet(&quot;MqttBrokerInformation.MqttBrokerSubTopic&quot;, sTopicToSubscribe, &quot;MqttBrokerInformation.MqttBrokerConnPassword&quot;, sPassword);
+  Topic_txt.text(sTopicToSubscribe);
+  Password_txt.text(sPassword);
+   dpConnect(&quot;WorkCB&quot;,&quot;MqttBrokerInformation.MqttBrokerConnStatus:_lock._corr._locked&quot;,&quot;MqttBrokerInformation.MqttBrokerConnStatus&quot;);
+
+}
+void WorkCB(string dpe, bool value, string dpe2, bool value2)
+{
+  bool bConnStatusToBroker;
+
+
+ if(value &amp;&amp; value2 )
+  {
+    ConnStatus.backCol(&quot;green&quot;);
+  }
+else
+ {
+    ConnStatus.backCol(&quot;red&quot;);
+  }
+
+
+if(!value &amp;&amp; value2)
+  {
+    dpSet(&quot;MqttBrokerInformation.MqttBrokerConnStatus&quot;, false );
+  }
+}
+]]></script>
+ </events>
+ <shapes>
+  <shape Name="RECTANGLE1" layerId="0" shapeType="RECTANGLE">
+   <properties>
+    <prop name="serialId">75</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">7 818</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_Transparent</prop>
+    <prop name="BackColor">{51,51,83}</prop>
+    <prop name="TabOrder">50</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">-1 45</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[solid]</prop>
+    <prop name="Geometry">2.559999999999999 0 0 0.07757575757575745 -17.92 956.5430303030305</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Location">7 818</prop>
+    <prop name="Size">751 751</prop>
+    <prop name="CornerRadius">0</prop>
+    <prop name="Transformable">True</prop>
+   </properties>
+  </shape>
+  <shape Name="ELLIPSE1" layerId="0" shapeType="ELLIPSE">
+   <properties>
+    <prop name="serialId">72</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">180.065127616665 494.0656931381951</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">{0,0,0}</prop>
+    <prop name="BackColor">lightgrey</prop>
+    <prop name="TabOrder">48</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[solid]</prop>
+    <prop name="Geometry">1 0 0 1 -13.6516433189658 257.2355514260424</prop>
+    <prop name="Center">150 508.1979276968802</prop>
+    <prop name="X-Radius">15</prop>
+    <prop name="Y-Radius">15</prop>
+   </properties>
+  </shape>
+  <shape Name="TO_JSON_STRING" layerId="0" shapeType="PUSH_BUTTON">
+   <properties>
+    <prop name="serialId">3</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">10 840</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_ButtonText</prop>
+    <prop name="BackColor">_Button</prop>
+    <prop name="TabOrder">3</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+     <prop name="de_AT.utf8"></prop>
+     <prop name="ru_RU.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">250 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1</prop>
+     <prop name="de_AT.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+     <prop name="ru_RU.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+    </prop>
+    <prop name="Location">11 854</prop>
+    <prop name="Size">131 34</prop>
+    <prop name="BorderStyle">Styled</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">To json string</prop>
+     <prop name="de_AT.utf8">To json string</prop>
+     <prop name="ru_RU.utf8">To json string</prop>
+    </prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[main(mapping event)
+{
+  this.enabled = FALSE;
+  TREE.updatesEnabled = FALSE;
+
+  anytype settings = getValueFromTree(getShape(&quot;TREE&quot;));
+
+  string sJson = jsonEncode(settings);
+
+  RESULT.text = sJson;
+
+  TREE.updatesEnabled = TRUE;
+  this.enabled = TRUE;
+}
+
+mixed getValueFromTree(shape tree, string parent = &quot;&quot;, string parentType = &quot;mapping&quot;)
+{
+  bool bJson = substr(parentType, 0, 5) == &quot;json &quot;;
+
+  if (bJson)
+  {
+    parentType = substr(parentType, 5);
+  }
+
+//  mixed result = parentType == &quot;mapping&quot; ? makeMapping() : makeDynAnytype();
+  mixed result = substr(parentType, 0, 4) != &quot;dyn_&quot; ? makeMapping() : makeDynAnytype();
+
+  dyn_string children = tree.children(parent);
+
+  if (dynlen(children) == 0)
+  {
+    if (parentType == &quot;bool&quot;)
+    {
+      result = (bool)tree.getText(parent, 1);
+    }
+    else if (parentType == &quot;float&quot;)
+    {
+      result = (float)tree.getText(parent, 1);
+    }
+    else if (substr(parentType, 0, 4) == &quot;dyn_&quot;)
+    {
+      switch (parentType)
+      {
+//        case &quot;dyn_string&quot;: result = makeDynString(); break;
+        default: result = makeDynAnytype(); break;
+      }
+    }
+    else
+    {
+      result = tree.getText(parent, 1);
+    }
+
+    DebugFN(&quot;TEXT&quot;, &quot;parent: &quot; + parent + &quot; type: &quot; + parentType + &quot; result: &quot; + result + &quot; text: &quot; + tree.getText(parent, 1));
+  }
+
+  for (int i = 1; i &lt;= dynlen(children); i++)
+  {
+    string id = children[i];
+
+    string name = tree.getText(id, 0);
+    string type = tree.getText(id, 2);
+    anytype value;
+
+    DebugFN(&quot;CHILD&quot;, &quot;id: &quot; + id + &quot; name: &quot; + name + &quot; type: &quot; + type + &quot; dyn: &quot; + (substr(getTypeName(result), 0, 4) == &quot;dyn_&quot;) + &quot; isNumber: &quot; + isNumber(name));
+
+    value = getValueFromTree(tree, id, type);
+
+    result[name] = value;
+  }
+
+  if (bJson)
+  {
+    result = jsonEncode(result);
+  }
+
+  DebugFN(&quot;RETURN&quot;, __FUNCTION__ + &quot;(..., &quot; + parent + &quot;, &quot; + parentType + &quot;) Returning type: &quot; + getTypeName(result) + &quot; value: &quot; + result);
+
+  return result;
+}
+
+private bool isNumber(string s)
+{
+  string allowed = &quot;12345678990&quot;;
+  for(int i = 0; i &lt; strlen(s); ++i)
+    if(strpos(allowed, s[i]) == -1)
+      return false;
+  return true;
+}
+]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+
+  this.styleSheet(myStyleButton);
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="RESULT" layerId="0" shapeType="TEXT_FIELD">
+   <properties>
+    <prop name="serialId">4</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">146.6533014341547 843.8000000000002</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_WindowText</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="HoverBackCol">_Transparent</prop>
+    <prop name="TabOrder">4</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+     <prop name="de_AT.utf8"></prop>
+     <prop name="ru_RU.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">300 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+     <prop name="de_AT.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+     <prop name="ru_RU.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+    </prop>
+    <prop name="Location">160.0000000000001 854.0000000000001</prop>
+    <prop name="Size">612 34</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Editable">True</prop>
+    <prop name="ClearButtonEnabled">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+    <prop name="ulcClientSideWidget">False</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+this.styleSheet(myStyleInputField);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="TREE" layerId="0" shapeType="TREE">
+   <properties>
+    <prop name="serialId">2</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">830.0000000000002 210.0000000000002</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_Window</prop>
+    <prop name="BackColor">{0,31,57}</prop>
+    <prop name="TabOrder">2</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+     <prop name="de_AT.utf8"></prop>
+     <prop name="ru_RU.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+     <prop name="de_AT.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+     <prop name="ru_RU.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+    </prop>
+    <prop name="Location">830.0000000000002 210.0000000000002</prop>
+    <prop name="Size">1051 741</prop>
+    <extended>
+     <prop name="editTriggers" type="ENUM">31</prop>
+     <prop name="autoExpandDelay" type="INT">500</prop>
+     <prop name="selectionMode" type="ENUM">2</prop>
+     <prop name="alternatingRowColors" type="BOOL">False</prop>
+     <script isEscaped="1" name="rightClicked"><![CDATA[rightClicked(string id, int column)
+{
+  int answer;
+  dyn_string menu = makeDynString(&quot;PUSH_BUTTON,Delete node,1,1&quot;);
+
+  popupMenu(menu, answer);
+  DebugN(&quot;item------&quot;,  this.selectedItems());
+  switch (answer)
+  {
+    case 1: this.removeItem(id); break;
+  }
+}
+]]></script>
+    </extended>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  TREE.addColumn(&quot;MQTT Topics&quot;);
+  TREE.addColumn(&quot;VALUE&quot;);
+
+  TREE.addColumn(&quot;TYPE&quot;);
+ TREE.hideColumn(1);
+ TREE.collapseAll();
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="FRAME3" layerId="0" shapeType="FRAME">
+   <properties>
+    <prop name="serialId">17</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">10 109</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">WF_RefDiffLineLight</prop>
+    <prop name="BackColor">{0,0,0}</prop>
+    <prop name="TabOrder">16</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">0.8567926455566856 0 0 4.083866837387964 1.432073544433145 -95.14148527528806</prop>
+    <prop name="BorderStyle">3D</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Subscription</prop>
+    </prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,19,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">10 109</prop>
+    <prop name="Size">891 72</prop>
+   </properties>
+  </shape>
+  <shape Name="Topic_txt" layerId="0" shapeType="TEXT_FIELD">
+   <properties>
+    <prop name="serialId">18</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">19.57874164669834 393.9545454545455</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_WindowText</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="HoverBackCol">_Transparent</prop>
+    <prop name="TabOrder">17</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8">Please enter your topic</prop>
+    </prop>
+    <prop name="maximumSize">250 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Tahoma,-1,15,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">22.54545454545006 490.9545454545455</prop>
+    <prop name="Size">734 34</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Editable">True</prop>
+    <prop name="ClearButtonEnabled">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+    <prop name="ulcClientSideWidget">False</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="TextChanged"><![CDATA[main(string newText)
+{
+  if(newText !=&quot;&quot;)
+  Topic_txt.styleSheet(myStyleInputField);
+}]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+ this.styleSheet(myStyleInputField);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT4" layerId="0" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">19</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">25.51216744420178 467.6795454545454</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">18</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Location">25.51216744420178 467.6795454545454</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Subscription Topic</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+  </shape>
+  <shape Name="Import_btn" layerId="0" shapeType="PUSH_BUTTON">
+   <properties>
+    <prop name="serialId">21</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">350 650</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_ButtonText</prop>
+    <prop name="BackColor">_Button</prop>
+    <prop name="TabOrder">20</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">90 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Location">339.1625664511493 749.9334791229227</prop>
+    <prop name="Size">131 32</prop>
+    <prop name="BorderStyle">Styled</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Import</prop>
+    </prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[#uses &quot;ImportMqttTopicsAndCreateCNS.ctl&quot;
+main(mapping event)
+{
+  anytype atData;
+  dyn_dyn_anytype ddaQRes;
+  string sConnection;
+  bool bConnectionStatus;
+
+  dpGet(&quot;MqttBrokerInformation.MqttBrokerConnStatus&quot;, bConnectionStatus);
+
+  //lock the import button until the import is done!
+  Import_btn.enabled(false);
+
+  getValue(&quot;mqttConnections_box&quot;, &quot;selectedText&quot;, sConnection);
+
+  if (sConnection != &quot;&quot; &amp;&amp; bConnectionStatus )
+  {
+    MqttTopicsImporterAndCNScreator(atData, ddaQRes, sConnection);
+  }
+
+  //unlock the import button
+  Import_btn.enabled(true);
+}]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  this.styleSheet(myStyleButton);
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="mqttConnections_box" layerId="0" shapeType="COMBO_BOX">
+   <properties>
+    <prop name="serialId">23</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">115 211</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_WindowText</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">21</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="AcceptDrops">True</prop>
+    <prop name="sizePolicy">
+     <sizePolicy horizontal="MinimumExpanding" vertical="Fixed"/>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">MS Shell Dlg 2,-1,14,5,400,0,0,0,0,0,0,0,0,0,0,1</prop>
+    </prop>
+    <prop name="Location">20 241</prop>
+    <prop name="Size">381 34</prop>
+    <prop name="Listitems"/>
+    <prop name="Editable">False</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Changed"><![CDATA[main()
+{
+  UpdateMqttConnPanel();
+  dpSet(&quot;MqttBrokerInformation.MqttClientConnTrigger&quot;, false);
+  ConnectionSwitch.checked(false);
+  TREE.clear();
+}]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  string myStyle =
+    &quot;QComboBox {&quot;
+    &quot;  background-color: #001F39;&quot;
+    &quot;  color: #FFF;&quot;
+    &quot;  border: 1px solid #FFF;&quot;
+    &quot;  border-radius: 0px;&quot;
+    &quot;  padding: 6px 12px;&quot;
+    &quot;  font-size: 14px;&quot;
+    &quot;  font-weight: 500;&quot;
+    &quot;}&quot;
+    &quot;QComboBox:hover {&quot;
+    &quot;  border-color: #00FFB9;&quot;
+    &quot;}&quot;
+    &quot;QComboBox:focus {&quot;
+    &quot;  background-color: #16565C;&quot;
+    &quot;  border-color: #00FFB9;&quot;
+    &quot;}&quot;
+    &quot;QComboBox QAbstractItemView {&quot;
+    &quot;  background-color: #001F39;&quot;
+    &quot;  color: #FFF;&quot;
+    &quot;  selection-background-color: #16565C;&quot;
+    &quot;  selection-color: #00FFB9;&quot;
+    &quot;}&quot;
+    &quot;QComboBox::drop-down {&quot;
+    &quot;  border: none;&quot;
+    &quot;  background-color: #00FFB9;&quot;
+    &quot;}&quot;;
+  this.styleSheet(myStyle);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT6" layerId="0" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">25</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">24.929937304075 204.3110795454543</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">23</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">1.20235218557408 0 0 1 -5.044627299704374 10</prop>
+    <prop name="Location">24.929937304075 204.3110795454543</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Noto Sans,-1,15,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Connection</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+  </shape>
+  <shape Name="FRAME4" layerId="0" shapeType="FRAME">
+   <properties>
+    <prop name="serialId">26</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">10 109</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">WF_RefDiffLineLight</prop>
+    <prop name="BackColor">{0,0,0}</prop>
+    <prop name="TabOrder">24</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">True</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">0.8584269662921298 0 0 1.957746478873239 -2.584269662916977 -42.39436619718306</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">MQTT Connection</prop>
+    </prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,19,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">10 109</prop>
+    <prop name="Size">891 72</prop>
+   </properties>
+  </shape>
+  <shape Name="Configuration_btn" layerId="0" shapeType="PUSH_BUTTON">
+   <properties>
+    <prop name="serialId">27</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">466 205.814453125</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_ButtonText</prop>
+    <prop name="BackColor">_Button</prop>
+    <prop name="HoverBackCol">{0,255,185}</prop>
+    <prop name="TabOrder">25</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">90 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Location">422 240</prop>
+    <prop name="Size">150 34</prop>
+    <prop name="BorderStyle">Styled</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Configure</prop>
+    </prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[main(mapping event)
+{
+dyn_float dfResult;
+dyn_string dsResult;
+  string strvar = &quot;Beispiel&quot;;
+  string sQuery = &quot;SELECT '_original.._value' FROM '_*.Config.Address:'&quot;;
+
+  ChildPanelOnReturn(&quot;/para/mqtt.pnl&quot;, &quot;MQTT&quot;, makeDynString(&quot;abc&quot;,strvar),0,0,dfResult,dsResult);
+   UpdateMqttConnPanel();
+
+}
+
+]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  this.styleSheet(myStyleButton);
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="remove_connection" layerId="0" shapeType="PUSH_BUTTON">
+   <properties>
+    <prop name="serialId">29</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">619 205.7470703125</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_ButtonText</prop>
+    <prop name="BackColor">_Button</prop>
+    <prop name="TabOrder">26</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">90 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Location">598 240</prop>
+    <prop name="Size">150 34</prop>
+    <prop name="BorderStyle">Styled</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Remove</prop>
+    </prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[main(mapping event)
+{
+  string sSelection;
+    string sPath = getPath(SOURCE_REL_PATH);
+  //get the selected mqtt connection
+  getValue(&quot;mqttConnections_box&quot;, &quot;selectedText&quot;, sSelection);
+
+  // check if the DP exists and delete it
+  if (dpExists(&quot;_&quot; + sSelection) &amp;&amp; sSelection != &quot;&quot;)
+  {
+    dpDelete(&quot;_&quot; + sSelection);
+
+    if (dpExists(&quot;_&quot; + sSelection + &quot;_2&quot;))
+    {
+      dpDelete(&quot;_&quot; + sSelection);
+    }
+  }
+
+  Password_txt.text(&quot;&quot;);
+  Topic_txt.text(&quot;&quot;);
+  Username_txt.text(&quot;&quot;);
+  URL_txt.text(&quot;&quot;);
+
+
+  // disconnect the mqtt client after deleting the connection
+  dpSet(&quot;MqttBrokerInformation.MqttClientConnTrigger&quot;, false);
+
+  // update the panel
+  UpdateMqttConnPanel();
+
+
+}]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+
+  this.styleSheet(myStyleButton);
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="Username_txt" layerId="0" shapeType="TEXT_FIELD">
+   <properties>
+    <prop name="serialId">30</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">19.54545454545005 453.9545454545455</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_WindowText</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="HoverBackCol">_Transparent</prop>
+    <prop name="TabOrder">27</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">250 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Tahoma,-1,15,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">22.54545454545006 570.9545454545455</prop>
+    <prop name="Size">351 34</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Editable">True</prop>
+    <prop name="ClearButtonEnabled">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+    <prop name="ulcClientSideWidget">False</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+this.styleSheet(myStyleInputField);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT7" layerId="0" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">31</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">25.54545454545007 549.9545454545455</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">28</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Location">25.54545454545007 549.9545454545455</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Username</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+  </shape>
+  <shape Name="Password_txt" layerId="0" shapeType="TEXT_FIELD">
+   <properties>
+    <prop name="serialId">32</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">395.6030914330582 453.9545454545455</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_WindowText</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="HoverBackCol">_Transparent</prop>
+    <prop name="TabOrder">29</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">250 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Tahoma,-1,15,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">392.5454545454501 570.9545454545455</prop>
+    <prop name="Size">358 34</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Editable">True</prop>
+    <prop name="ClearButtonEnabled">False</prop>
+    <prop name="TextFormat">[0S,,,AlignLeft]</prop>
+    <prop name="ulcClientSideWidget">False</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+this.styleSheet(myStyleInputField);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT8" layerId="0" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">33</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">393.3393026941181 393.75</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">30</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">1.384615384615384 0 0 1 -143.7388926445952 155.9545454545455</prop>
+    <prop name="Location">393.3393026941181 393.75</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Password</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+  </shape>
+  <shape Name="URL_txt" layerId="0" shapeType="TEXT_FIELD">
+   <properties>
+    <prop name="serialId">35</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">19.58156565656117 333.9545454545455</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_WindowText</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="HoverBackCol">_Transparent</prop>
+    <prop name="TabOrder">31</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">250 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Tahoma,-1,15,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Location">22.54545454545006 412.9545454545455</prop>
+    <prop name="Size">734 34</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Editable">True</prop>
+    <prop name="ClearButtonEnabled">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+    <prop name="ulcClientSideWidget">False</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+ this.styleSheet(myStyleInputField);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT9" layerId="0" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">36</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">24.36363636362753 390.3636363636364</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">32</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Location">24.36363636362753 390.3636363636364</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Server URL</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+  </shape>
+  <shape Name="info" layerId="0" shapeType="Label">
+   <properties>
+    <prop name="serialId">37</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">10 52.26708011531687</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">{0,0,40}</prop>
+    <prop name="TabOrder">33</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+     <prop name="de_AT.utf8"></prop>
+     <prop name="ru_RU.utf8"></prop>
+    </prop>
+    <prop name="sizePolicy">
+     <sizePolicy horizontal="Preferred" vertical="Minimum"/>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,19,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+     <prop name="de_AT.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Standard</prop>
+     <prop name="ru_RU.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Standard</prop>
+    </prop>
+    <prop name="Location">7.134900596884285 51.46635154622656</prop>
+    <prop name="Size">1922 79</prop>
+    <extended>
+     <prop name="frameShape" type="ENUM">0</prop>
+     <prop name="text" type="CHAR_STRING"></prop>
+     <prop name="styleSheet" type="CHAR_STRING"></prop>
+    </extended>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  string sDescription;
+
+  sDescription = &quot;  This panel facilitates seamless integration with brokers, allowing users to subscribe to specific topics &quot;
+                 &quot;and explore available topics within the broker. Users can import the entire UNS structure or individual topics\n&quot;
+                 &quot;  into their system either manually, by clicking on Import, or automatically, the panel dynamically &quot;
+                 &quot;detects and imports new topics as they appear in the broker&quot;;
+
+  this.text = sDescription;
+  this.styleSheet(&quot;margin-top: 5px; margin-left: 15px; margin-right: 15px; margin-bottom: 5px; border-bottom: 1px black;&quot;);
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="header" layerId="0" shapeType="Label">
+   <properties>
+    <prop name="serialId">38</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">-6 -8.989045491330252</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">WF_RefDiffLineLight</prop>
+    <prop name="BackColor">{0,0,40}</prop>
+    <prop name="TabOrder">34</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+     <prop name="de_AT.utf8"></prop>
+     <prop name="ru_RU.utf8"></prop>
+    </prop>
+    <prop name="sizePolicy">
+     <sizePolicy horizontal="Preferred" vertical="Minimum"/>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,32,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+     <prop name="de_AT.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Standard</prop>
+     <prop name="ru_RU.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Standard</prop>
+    </prop>
+    <prop name="Location">-9.042238295256182 -10</prop>
+    <prop name="Size">1921 81</prop>
+    <extended>
+     <prop name="frameShape" type="ENUM">0</prop>
+     <prop name="text" type="CHAR_STRING"></prop>
+     <prop name="styleSheet" type="CHAR_STRING"></prop>
+    </extended>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  string sHeader;
+
+  sHeader = &quot;  MQTT Explorer and Importer&quot;;
+  this.text = sHeader;
+  this.styleSheet(&quot;margin-top: 15px; margin-left: 15px; margin-right: 15px; margin-bottom: 5px; border-bottom: 1px black;&quot;);
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="PUSH_BUTTON1" layerId="0" shapeType="PUSH_BUTTON">
+   <properties>
+    <prop name="serialId">41</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">145.3483566810342 650.5691679312552</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_ButtonText</prop>
+    <prop name="BackColor">_Button</prop>
+    <prop name="TabOrder">36</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="maximumSize">90 -1</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Location">182.1625664511493 749.9334791229227</prop>
+    <prop name="Size">131 32</prop>
+    <prop name="BorderStyle">Styled</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Explore</prop>
+    </prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[main()
+{
+  string sDiscoveredTopics;
+
+  dpGet(&quot;MqttBrokerInformation.DiscoveredTopics:_original.._value&quot;, sDiscoveredTopics);
+  clearTree();
+  loadJson(sDiscoveredTopics);
+//   TREE.collapseAll();
+}
+]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+
+  this.styleSheet(myStyleButton);
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="ConnectionSwitch" layerId="0" shapeType="GENERIC">
+   <properties>
+    <prop name="serialId">49</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">22.96169001436774 751.3822607590405</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_3DText</prop>
+    <prop name="BackColor">_3DFace</prop>
+    <prop name="TabOrder">41</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="sizePolicy">
+     <sizePolicy horizontal="Preferred" vertical="Fixed"/>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Tahoma,-1,19,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">22.55502334770099 751.1168298381975</prop>
+    <prop name="Size">80 30</prop>
+    <prop name="ObjectType">ToggleSwitch.ewo</prop>
+    <extended>
+     <prop name="skin" type="ENUM">3</prop>
+     <prop name="backgroundBrushOn" type="FILL">[outline]</prop>
+     <prop name="backgroundBrushOff" type="FILL">[solid]</prop>
+     <prop name="textOff" type="CHAR_STRING">Off</prop>
+     <prop name="textOn" type="CHAR_STRING">On</prop>
+     <prop name="inputMethodHints" type="ENUM">0</prop>
+     <script isEscaped="1" name="toggled"><![CDATA[toggled(bool on)
+{
+  string sDiscoveredTopics;
+  string sBrokerPassword;
+  string sTopicToSubscribe;
+
+  string sTopic;
+  getValue(&quot;Topic_txt&quot;, &quot;text&quot;, sTopic);
+
+  if (on)
+  {
+    if (sTopic == &quot;&quot;)
+    {
+      Topic_txt.styleSheet(myStyleInputfielderror);
+    }
+    else
+    {
+      dpSet(&quot;MqttBrokerInformation.MqttClientConnTrigger&quot;, true);
+
+      getValue(&quot;Topic_txt&quot;, &quot;text&quot;, sTopicToSubscribe);
+      getValue(&quot;Password_txt&quot;, &quot;text&quot;, sBrokerPassword);
+
+      if (dpExists(&quot;MqttBrokerInformation&quot;))
+      {
+        dpSet(makeDynString(&quot;MqttBrokerInformation.MqttBrokerSubTopic&quot;,
+                            &quot;MqttBrokerInformation.MqttBrokerConnPassword&quot;),
+              makeDynString(sTopicToSubscribe, sBrokerPassword));
+      }
+
+      dpGet(&quot;MqttBrokerInformation.DiscoveredTopics:_original.._value&quot;, sDiscoveredTopics);
+    }
+  }
+  else
+  {
+    dpSet(&quot;MqttBrokerInformation.MqttClientConnTrigger&quot;, false);
+  }
+}
+]]></script>
+    </extended>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+
+  bool bStatus;
+  dpGet(&quot;MqttBrokerInformation.MqttClientConnTrigger&quot;, bStatus);
+  this.checked(bStatus);
+
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="Connect_to_broker_txt" layerId="0" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">50</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">24.55502334770099 723.1168298381972</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">42</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Location">24.55502334770099 723.1168298381972</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,15,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Connect</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT12" layerId="0" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">59</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">188.5066666666667 511</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">lightgrey</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">44</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">1.242456896551725 0 0 1 -122.2346318247131 212.1168298381974</prop>
+    <prop name="Location">188.5066666666667 511</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,15,5,400,0,0,0,0,0,0,0,0,0,0,1,Roman</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Status</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+  </shape>
+  <shape Name="CHECK_BOX1" layerId="0" shapeType="CHECK_BOX">
+   <properties>
+    <prop name="serialId">60</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">492.1625664511494 743.8410374985554</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">WF_RefDiffLineLight</prop>
+    <prop name="BackColor">_3DFace</prop>
+    <prop name="TabOrder">45</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">492.1625664511494 743.8410374985554</prop>
+    <prop name="Size">282 51</prop>
+    <prop name="ShowBackground">False</prop>
+    <prop name="Listitems">
+     <prop name="Item">
+      <prop name="Text">
+       <prop name="en_US.utf8">Automatic import of the UNS structure</prop>
+      </prop>
+      <prop name="Select">False</prop>
+     </prop>
+    </prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[#uses &quot;ImportMqttTopicsAndCreateCNS.ctl&quot;
+main(int button, int state)
+{
+    Import_btn.enabled(!state);
+if(state)
+
+    {
+      dpConnect(&quot;WorkCB&quot;,&quot;MqttBrokerInformation.DiscoveredTopics&quot; );
+    }
+    else
+    {
+      dpDisconnect(&quot;WorkCB&quot;,&quot;MqttBrokerInformation.DiscoveredTopics&quot; );
+    }
+}
+
+void WorkCB(string dpe, float value)
+{
+  anytype atData;
+  dyn_dyn_anytype ddaQRes;
+  string sConnection;
+  bool bConnectionStatus;
+
+
+  dpGet(&quot;MqttBrokerInformation.MqttBrokerConnStatus&quot;, bConnectionStatus);
+  getValue(&quot;mqttConnections_box&quot;,&quot;selectedText&quot;, sConnection);
+
+  if (sConnection != &quot;&quot; &amp;&amp; bConnectionStatus )
+  {
+    MqttTopicsImporterAndCNScreator(atData, ddaQRes, sConnection);
+  }
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="ConnStatus" layerId="0" shapeType="ELLIPSE">
+   <properties>
+    <prop name="serialId">71</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">205.6061011451366 507.0005655215301</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">{0,0,0}</prop>
+    <prop name="BackColor">{255,255,255}</prop>
+    <prop name="TabOrder">47</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[solid]</prop>
+    <prop name="Geometry">0.8125110457327965 0 0 0.8125110457327966 -30.70887156944385 353.489919443905</prop>
+    <prop name="Center">205.6061011451366 507.0005655215301</prop>
+    <prop name="X-Radius">15.99943447846994</prop>
+    <prop name="Y-Radius">15.99943447846994</prop>
+   </properties>
+  </shape>
+  <shape Name="cmdClose" layerId="0" shapeType="PUSH_BUTTON">
+   <properties>
+    <prop name="serialId">79</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">598.5714285714286 739.5909090909089</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_ButtonText</prop>
+    <prop name="BackColor">_Button</prop>
+    <prop name="TabOrder">54</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8">Accept changes and close panel</prop>
+     <prop name="de_AT.utf8">Änderungen übernehmen und Panel schließen</prop>
+     <prop name="ru_RU.utf8">Принять изменения и закрыть панель</prop>
+    </prop>
+    <prop name="Hotkey">Enter</prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Arial,-1,13,5,400,0,0,0,0,0,0,0,0,0,0,1</prop>
+     <prop name="de_AT.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+     <prop name="ru_RU.utf8">Arial,-1,13,5,50,0,0,0,0,0</prop>
+    </prop>
+    <prop name="Location">1756.571428571428 1033.590909090909</prop>
+    <prop name="Size">131 32</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Close</prop>
+     <prop name="de_AT.utf8">OK</prop>
+     <prop name="ru_RU.utf8">OK</prop>
+    </prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[main()
+{
+  dyn_anytype da, daa;
+
+  da[1] = myModuleName();
+  da[2] = myPanelName();
+  daa[1] = 0.0;
+  da[3] = daa;
+
+  if ( isEvConnOpen() )
+  {
+      dpSet(&quot;MqttBrokerInformation.MqttClientConnTrigger&quot;, false);
+    PanelOff();
+  }
+  else
+    panelOff(da);
+}
+
+
+]]></script>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+
+  this.styleSheet(myStyleButton);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="FRAME5" layerId="0" shapeType="FRAME">
+   <properties>
+    <prop name="serialId">81</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">10 109</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">WF_RefDiffLineLight</prop>
+    <prop name="BackColor">{0,0,0}</prop>
+    <prop name="TabOrder">56</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">0.8584269662921251 0 0 1.790012804097287 1.665730337087492 487.7976952624884</prop>
+    <prop name="BorderStyle">3D</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Commands</prop>
+    </prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,19,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">10 109</prop>
+    <prop name="Size">891 72</prop>
+   </properties>
+  </shape>
+  <shape Name="FRAME6" layerId="0" shapeType="FRAME">
+   <properties>
+    <prop name="serialId">82</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">10 109</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">WF_RefDiffLineLight</prop>
+    <prop name="BackColor">{0,0,0}</prop>
+    <prop name="TabOrder">57</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">1.247191011235955 0 0 11.40845070422536 787.5280898876405 -1073.521126760564</prop>
+    <prop name="BorderStyle">3D</prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Discovered Topics</prop>
+    </prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">Siemens Sans,-1,19,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Location">10 109</prop>
+    <prop name="Size">891 72</prop>
+   </properties>
+  </shape>
+  <shape Name="LINE1" layerId="0" shapeType="LINE">
+   <properties>
+    <prop name="serialId">86</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">-20 140</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">{0,255,185}</prop>
+    <prop name="BackColor">{255,255,255}</prop>
+    <prop name="TabOrder">59</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,5]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="Start">-20 140</prop>
+    <prop name="End">1911 140</prop>
+   </properties>
+  </shape>
+  <shape Name="SPACER1" layerId="0" shapeType="SPACER">
+   <properties>
+    <prop name="serialId">91</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">19 592</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">{0,0,0}</prop>
+    <prop name="BackColor">{255,255,255}</prop>
+    <prop name="TabOrder">61</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="TransparentForMouse">True</prop>
+    <prop name="sizePolicy">
+     <sizePolicy horizontal="Expanding" vertical="Ignored"/>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="Location">19 592</prop>
+    <prop name="Size">51 51</prop>
+    <prop name="Orientation">horizontal</prop>
+   </properties>
+  </shape>
+ </shapes>
+ <groups>
+  <group Name="SHAPE_GROUP1" parentSerial="11" serial="0">
+   <properties>
+    <prop name="shapeSerial">72</prop>
+    <prop name="shapeSerial">71</prop>
+    <prop name="maximumSize">40 40</prop>
+    <prop name="sizePolicy">
+     <sizePolicy horizontal="Fixed" vertical="Fixed"/>
+    </prop>
+    <prop name="layoutAlignment">AlignTop</prop>
+   </properties>
+  </group>
+  <layout Name="LAYOUT_GROUP1" parentSerial="15" serial="1">
+   <properties>
+    <prop name="shapeSerial">82</prop>
+    <prop idx="0" name="shapeSerial">2</prop>
+    <prop name="isContainerShape">True</prop>
+    <prop name="layoutType">HBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP2" parentSerial="3" serial="2">
+   <properties>
+    <prop idx="0" name="shapeSerial">25</prop>
+    <prop idx="1" name="shapeSerial">23</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP4" parentSerial="14" serial="3">
+   <properties>
+    <prop name="shapeSerial">26</prop>
+    <prop idx="1" name="shapeSerial">27</prop>
+    <prop idx="2" name="shapeSerial">29</prop>
+    <prop idx="0" name="groupSerial">2</prop>
+    <prop name="isContainerShape">True</prop>
+    <prop name="layoutType">HBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP5" parentSerial="8" serial="4">
+   <properties>
+    <prop idx="0" name="shapeSerial">31</prop>
+    <prop idx="1" name="shapeSerial">30</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP6" parentSerial="8" serial="5">
+   <properties>
+    <prop idx="0" name="shapeSerial">33</prop>
+    <prop idx="1" name="shapeSerial">32</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP7" parentSerial="9" serial="6">
+   <properties>
+    <prop idx="0" name="shapeSerial">36</prop>
+    <prop idx="1" name="shapeSerial">35</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP8" parentSerial="9" serial="7">
+   <properties>
+    <prop idx="0" name="shapeSerial">19</prop>
+    <prop idx="1" name="shapeSerial">18</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP9" parentSerial="9" serial="8">
+   <properties>
+    <prop idx="0" name="groupSerial">4</prop>
+    <prop idx="1" name="groupSerial">5</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">HBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP10" parentSerial="14" serial="9">
+   <properties>
+    <prop name="shapeSerial">17</prop>
+    <prop idx="0" name="groupSerial">6</prop>
+    <prop idx="1" name="groupSerial">7</prop>
+    <prop idx="2" name="groupSerial">8</prop>
+    <prop name="isContainerShape">True</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP11" parentSerial="12" serial="10">
+   <properties>
+    <prop idx="0" name="shapeSerial">50</prop>
+    <prop idx="1" name="shapeSerial">49</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP12" parentSerial="12" serial="11">
+   <properties>
+    <prop idx="0" name="shapeSerial">59</prop>
+    <prop idx="1" name="groupSerial">0</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP13" parentSerial="14" serial="12">
+   <properties>
+    <prop name="shapeSerial">81</prop>
+    <prop idx="3" name="shapeSerial">21</prop>
+    <prop idx="2" name="shapeSerial">41</prop>
+    <prop idx="4" name="shapeSerial">60</prop>
+    <prop idx="0" name="groupSerial">10</prop>
+    <prop idx="1" name="groupSerial">11</prop>
+    <prop name="isContainerShape">True</prop>
+    <prop name="layoutType">HBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP14" parentSerial="14" serial="13">
+   <properties>
+    <prop idx="0" name="shapeSerial">3</prop>
+    <prop idx="1" name="shapeSerial">4</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">HBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP15" parentSerial="15" serial="14">
+   <properties>
+    <prop idx="3" name="groupSerial">13</prop>
+    <prop idx="1" name="groupSerial">9</prop>
+    <prop idx="2" name="groupSerial">12</prop>
+    <prop idx="0" name="groupSerial">3</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP16" parentSerial="-1" serial="15">
+   <properties>
+    <prop idx="0" name="groupSerial">14</prop>
+    <prop idx="1" name="groupSerial">1</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">HBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP17" parentSerial="-1" serial="16">
+   <properties>
+    <prop name="shapeSerial">75</prop>
+    <prop idx="0" name="shapeSerial">79</prop>
+    <prop idx="1" name="shapeSerial">91</prop>
+    <prop name="isContainerShape">True</prop>
+    <prop name="layoutType">HBox</prop>
+   </properties>
+  </layout>
+  <layout Name="LAYOUT_GROUP18" parentSerial="-1" serial="17">
+   <properties>
+    <prop idx="1" name="shapeSerial">37</prop>
+    <prop idx="0" name="shapeSerial">38</prop>
+    <prop idx="2" name="shapeSerial">86</prop>
+    <prop name="isContainerShape">False</prop>
+    <prop name="layoutType">VBox</prop>
+   </properties>
+  </layout>
+ </groups>
+</panel>

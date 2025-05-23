@@ -1,0 +1,90 @@
+WCCILevent   (0), 2025.05.12 15:14:32.388, SYS,  INFO,        1, Manager Start, PROJ, MqttExplorerAndImporterExample, V 3.20 - 3.20 P003 platform Windows AMD64 linked at Dec  2 2024 20:34:46 (547d1f1e04)
+WCCILevent   (0), 2025.05.12 15:14:32.389, SYS,  INFO,      108, License information, Wibu CodeMeter License
+WCCILevent   (0), 2025.05.12 15:14:32.442, SYS,  INFO,      108, License information, Initializing CodeMeter container 130-1895704171 (LOCAL)
+WCCILevent   (0), 2025.05.12 15:14:32.445, SYS,  INFO,      108, License information, 
+version     = 32000000
+sn          = "CodeMeter sn:130-1895704171"
+expire      = 2026.02.01;00:59:59,000 
+demoPeriod  = 30d
+event       = 1
+ios         = 2000000000
+ssi         = 0
+update      = 2
+
+
+WCCILevent   (0), 2025.05.12 15:14:32.446, SYS,  INFO,        3, Trying to connect to (SYS: 0 Data -num 0 CONN: 1) @ localhost:4897
+WCCILevent   (0), 2025.05.12 15:14:32.466, SYS,  INFO,        4, Connected to (SYS: 0 Data -num 0 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Event.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Event.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Event.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Driver.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Driver.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Driver.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Data.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Data.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Data.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ui.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ui.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ui.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ctrl.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ctrl.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ctrl.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ascii.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ascii.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Ascii.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Api.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Api.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Api.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Device.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.480, PARAM,SEVERE,     71, DP does not exist, _Connections.Device.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Device.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Redu.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Redu.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Redu.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Report.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Report.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Report.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Dde.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Dde.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Dde.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Dist.ManNums:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Dist.StartTimes:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.481, PARAM,SEVERE,     71, DP does not exist, _Connections.Dist.HostNames:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.512, SYS,  INFO,        6, Initialization by Data Manager finished
+WCCILevent   (0), 2025.05.12 15:14:32.583, SYS,  INFO,      169, Initialize 0 dp-functions
+WCCILevent   (0), 2025.05.12 15:14:32.583, SYS,  INFO,      168, Initialize 0 alerts
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     7, Datapoint does not exist, UserTable, UserTable, _Users.UserId
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     7, Datapoint does not exist, ManagerTable, ManagerTable, _Managers.Auth.ManType
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.DpType:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.Dp:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.DpAuth:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.DpAlias:_original.._value
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     8, Element does not exist, EventManager, doDpConnect, _Managers.Exit
+WCCILevent   (0), 2025.05.12 15:14:32.585, PARAM,WARNING,     8, Element does not exist, EventManager, doDpConnect, _Managers.Refresh
+WCCILevent   (0), 2025.05.12 15:14:32.587, SYS,  WARNING,   108, License information, Eventmanager will shutdown after the demo period of 2592000 seconds
+WCCILevent   (0), 2025.05.12 15:14:32.884, SYS,  INFO,        4, Connected to (SYS: 1 Driver -num 2 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:33.221, SYS,  INFO,        4, Connected to (SYS: 1 Driver -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:33.391, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:33.621, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:33.775, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:34.279, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:34.454, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:35.327, SYS,  INFO,      118, Last error already repeated 50 times. Until another output occurs, this one will be blocked.
+WCCILevent   (0), 2025.05.12 15:14:39.367, SYS,  INFO,      255, _auth config for System1:_mp__SSC_KPI.kpiFunc:_auth._general._write has been changed
+WCCILevent   (0), 2025.05.12 15:14:39.371, SYS,  INFO,      119, Last error repeated 3796 times.
+WCCILevent   (0), 2025.05.12 15:14:39.371, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:39.634, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:39.783, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:39.968, SYS,  INFO,        4, Connected to (SYS: 1 Ctrl -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:40.058, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ctrl -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:40.234, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:40.244, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:40.408, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ md3zxqnc.ad001.siemens.net (127.0.0.1)
+WCCILevent   (0), 2025.05.12 15:14:40.455, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:40.489, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Driver -num 2 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:40.521, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Driver -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:40.629, SYS,  INFO,        2, Manager Stop, received signal 15, exiting
+WCCILevent   (0), 2025.05.12 15:14:40.629, SYS,  INFO,        2, Manager Stop, start cleanup
+WCCILevent   (0), 2025.05.12 15:14:40.629, SYS,  INFO,      181, Closing connection to (SYS: 1 Data -num 0 CONN: 1)
+WCCILevent   (0), 2025.05.12 15:14:40.629, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Data -num 0 CONN: 1), Connection closed
+WCCILevent   (0), 2025.05.12 15:14:40.638, SYS,  INFO,        2, Manager Stop
