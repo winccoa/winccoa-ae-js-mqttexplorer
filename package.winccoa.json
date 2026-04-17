@@ -1,0 +1,21 @@
+{
+  "RepoName": "WinCC OA MQTT Explorer and Importer",
+  "Keywords": [
+    "javascript",
+    "mqtt",
+    "integration",
+    "data-import",
+    "monitoring",
+    "visualization",
+    "automation"
+  ],
+  "Version": "1.0.0",
+  "Description": "Provides seamless MQTT integration for WinCC OA, enabling dynamic topic exploration, real-time data monitoring, and structured data import from MQTT brokers into WinCC OA systems.",
+  "OaVersions": "^3.20.0",
+  "Subprojects": [
+    {
+      "Name": "MQTTExplorerAndImporterTool",
+      "Description": "Core tool for connecting to MQTT brokers, exploring topics, and importing structured data into WinCC OA."
+    }
+  ]
+}
