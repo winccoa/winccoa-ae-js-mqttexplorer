@@ -154,6 +154,7 @@ void dpCreateCNS(dyn_dyn_anytype dsDPE, string &sConnectionName)
   if(!cns_viewExists(sSystemName + "." + sConnectionName + ":"))
   {
     cnsCreateView(sSystemName + "." + sConnectionName + ":", myLang);
+    DebugN("111111", sSystemName + "." + sConnectionName + ":");
   }
 
   int accessLevel = 10;
@@ -175,7 +176,7 @@ void dpCreateCNS(dyn_dyn_anytype dsDPE, string &sConnectionName)
 
       if (i == 1)
       {
-        if (!cns_nodeExists(sParent + "." + dsTopicNodes[i]))
+        if (!cns_nodeExists(sParent) && !cns_treeExists(sParent))
         {
           cns_createTreeOrNode(sParent, dsTopicNodes[i], myLang, "", CNS_DATATYPE_EMPTY);
         }

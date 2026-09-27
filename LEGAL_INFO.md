@@ -20,14 +20,14 @@ The Siemens terms of use (https://support.industry.siemens.com) shall also apply
 
 ## Security information 
 
-Siemens provides products and solutions with industrial security functions that support the secure operation of plants, systems, machines, and networks. 
+Siemens provides products and solutions with industrial cybersecurity functions that support the secure operation of plants, systems, machines and networks. 
 
-In order to protect plants, systems, machines, and networks against cyber threats, it is necessary to implement – and continuously maintain – a holistic, state-of-the-art industrial security concept. Siemens' products and solutions constitute one element of such a concept. 
+In order to protect plants, systems, machines and networks against cyber threats, it is necessary to implement – and continuously maintain – a holistic, state-of-the-art industrial cybersecurity concept. Siemens’ products and solutions constitute one element of such a concept. 
 
-Customers are responsible for preventing unauthorized access to their plants, systems, machines, and networks. Such systems, machines and components should only be connected to an enterprise network or the internet if and to the extent such a connection is necessary and only when appropriate security measures (e.g., firewalls and/or network segmentation) are in place. 
+Customers are responsible for preventing unauthorized access to their plants, systems, machines and networks. Such systems, machines and components should only be connected to an enterprise network or the internet if and to the extent such a connection is necessary and only when appropriate security measures (e.g. firewalls and/or network segmentation) are in place. 
 
-For additional information on industrial security measures that may be implemented, please visit https://www.siemens.com/industrialsecurity. 
+For additional information on industrial cybersecurity measures that may be implemented, please visit www.siemens.com/cybersecurity-industry. 
 
-Siemens' products and solutions undergo continuous development to make them more secure. Siemens strongly recommends that product updates are applied as soon as they are available and that the latest product versions are used. Use of product versions that are no longer supported, and failure to apply the latest updates may increase customer's exposure to cyber threats. 
+Siemens’ products and solutions undergo continuous development to make them more secure. Siemens strongly recommends that product updates are applied as soon as they are available and that the latest product versions are used. Use of product versions that are no longer supported, and failure to apply the latest updates may increase customer’s exposure to cyber threats. 
 
-To stay informed about product updates, subscribe to the Siemens Industrial Security RSS Feed under https://www.siemens.com/cert.
+To stay informed about product updates, subscribe to the Siemens Industrial Cybersecurity RSS Feed under https://www.siemens.com/cert. 

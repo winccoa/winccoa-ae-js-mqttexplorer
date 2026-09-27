@@ -27,7 +27,19 @@ SIEMENS' warranty obligations are set forth in your agreement with SIEMENS. SIEM
 Please note the following license conditions and copyright notices applicable to Open Source Software and/or other components (or parts thereof):
 
 | Component | Open Source Software [Yes/No] | Acknowledgements/Comment | License conditions and copyright notices |
-|-----------|------------------------------|-------------------------|----------------------------------------|
-| Node.js - V20.17.0 | Yes | MIT | <https://nodejs.org/>|
-| Mqtt - V>5.10.1 | Yes | MIT | <https://www.npmjs.com/package/mqtt#license>|
+|---|---|---|---|
+| @apollo/server 5.5.1 | Yes | MIT | https://github.com/apollographql/apollo-server/blob/main/LICENSE |
+| @as-integrations/express5 1.1.2 | Yes | MIT | https://github.com/apollo-server-integrations/apollo-server-integration-express5/blob/main/LICENSE |
+| @graphql-tools/schema 10.0.33 | Yes | MIT | https://github.com/ardatan/graphql-tools/blob/master/LICENSE |
+| cors 2.8.6 | Yes | MIT | https://github.com/expressjs/cors/blob/master/LICENSE |
+| dotenv 16.6.1 | Yes | BSD-2-Clause | https://github.com/motdotla/dotenv/blob/master/LICENSE |
+| express 5.2.1 | Yes | MIT | https://github.com/expressjs/express/blob/master/LICENSE |
+| graphql 16.14.0 | Yes | MIT | https://github.com/graphql/graphql-js/blob/main/LICENSE |
+| graphql-ws 5.16.2 | Yes | MIT | https://github.com/enisdenjo/graphql-ws/blob/master/LICENSE.md |
+| js-yaml 4.1.1 | Yes | MIT | https://github.com/nodeca/js-yaml/blob/master/LICENSE |
+| swagger-ui-express 5.0.1 | Yes | MIT | https://github.com/scottie1984/swagger-ui-express/blob/master/LICENSE |
+| uuid 9.0.1 | Yes | MIT | https://github.com/uuidjs/uuid/blob/main/LICENSE.md |
+| ws 8.20.1 | Yes | MIT | https://github.com/websockets/ws/blob/master/LICENSE |
+| jsonwebtoken 9.0.3 | Yes | MIT | https://github.com/auth0/node-jsonwebtoken/blob/master/LICENSE |
+| node-fetch 2.7.0 | Yes | MIT | https://github.com/node-fetch/node-fetch/blob/2.x/LICENSE.md |
 
